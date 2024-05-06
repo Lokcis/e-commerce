@@ -4,10 +4,10 @@ package Files;
  *
  * @author espin
  */
-
 import java.io.*;
 
 public class LimpiarTexto {
+
     public static void limpiarArchivo(String rutaEntrada, String rutaSalida) {
         try {
             BufferedReader lector = new BufferedReader(new FileReader(rutaEntrada));
@@ -30,4 +30,22 @@ public class LimpiarTexto {
             System.err.println("Error al procesar el archivo: " + e.getMessage());
         }
     }
+
+    public static int contarPalabras(String rutaArchivo) {
+        int contador = 0;
+        try {
+            BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo));
+            String linea;
+            while ((linea = lector.readLine()) != null) {
+                // Dividir la línea en palabras usando espacios en blanco como delimitador
+                String[] palabras = linea.split("\\s+");
+                // Añadir la cantidad de palabras en esta línea al contador total
+                contador += palabras.length;
+            }
+        } catch (IOException e) {
+            System.err.println("Error al procesar el archivo: " + e.getMessage());
+        }
+        return contador;
+    }
+
 }
