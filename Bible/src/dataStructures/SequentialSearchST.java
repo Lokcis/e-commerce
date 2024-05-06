@@ -6,6 +6,8 @@ package dataStructures;
  * @param <Key>
  * @param <Value>
  */
+import java.util.*;
+
 public class SequentialSearchST<Key, Value> {
 
     private Node first; // first node in the linked list
@@ -43,8 +45,19 @@ public class SequentialSearchST<Key, Value> {
     }
 
     public Key delete(Key key) {
-        put(key, null);
-        return key;
+        Node prev = null;
+        for (Node x = first; x != null; x = x.next) {
+            if (key.equals(x.key)) {
+                if (prev == null) {
+                    first = x.next;
+                } else {
+                    prev.next = x.next;
+                }
+                return key;
+            }
+            prev = x;
+        }
+        return null;
     }
 
     public boolean contains(Key key) {
@@ -52,71 +65,22 @@ public class SequentialSearchST<Key, Value> {
     }
 
     public boolean isEmpty() {
-        return size() == 0;
+        return first == null;
     }
 
     public int size() {
-        if (hi.compareTo(lo) < 0) {
-            return 0;
-        } else if (contains(hi)) {
-            return rank(hi) - rank(lo) + 1;
-        } else {
-            return rank(hi) - rank(lo);
+        int size = 0;
+        for (Node x = first; x != null; x = x.next) {
+            size++;
         }
+        return size;
     }
 
-    public Key min() {
-        return keys[0];
-    }
-
-    public Key max() {
-        return keys[N - 1];
-    }
-
-    public Key floor(Key key) {
-        return key;
-    }
-
-    public Key ceiling(Key key) {
-        int i = rank(key);
-        return keys[i];
-    }
-
-    public int rank(Key key, int lo, int hi) {
-        if (hi < lo) {
-            return lo;
+    public Iterable<Key> keys() {
+        LinkedList<Key> queue = new LinkedList<Key>();
+        for (Node x = first; x != null; x = x.next) {
+            queue.add(x.key);
         }
-        int mid = lo + (hi - lo) / 2;
-        int cmp = key.compareTo(keys[mid]);
-        if (cmp < 0) {
-            return rank(key, lo, mid - 1);
-        } else if (cmp > 0) {
-            return rank(key, mid + 1, hi);
-        } else {
-            return mid;
-        }
+        return queue;
     }
-
-    public Key select(int k) {
-        return keys[k];
-    }
-
-    public void deleteMin() {
-        delete(min());
-    }
-
-    public void deleteMax() {
-        delete(max());
-    }
-
-    public int size(Key lo, Key hi) {
-        if (hi.compareTo(lo) < 0) {
-            return 0;
-        } else if (contains(hi)) {
-            return rank(hi) - rank(lo) + 1;
-        } else {
-            return rank(hi) - rank(lo);
-        }
-    }
-
 }
