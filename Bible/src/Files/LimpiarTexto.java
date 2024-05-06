@@ -17,10 +17,9 @@ public class LimpiarTexto {
             while ((linea = lector.readLine()) != null) {
                 // Eliminar caracteres que no sean letras, números, espacios en blanco, apóstrofes o guiones
                 linea = linea.replaceAll("[^a-zA-ZÁÉÍÓÚáéíóúÑñ\\s']", "");
-
                 // Reemplazar múltiples espacios en blanco por un solo espacio
                 linea = linea.replaceAll("\\s+", " ");
-
+                linea = linea.toLowerCase();
                 // Escribir la línea limpia en el archivo de salida
                 escritor.write(linea);
             }
