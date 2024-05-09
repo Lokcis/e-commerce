@@ -42,7 +42,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
 
     public Value get(Key key) {
         if (key == null) {
-            throw new IllegalArgumentException("argument to get() is null");
+            throw new IllegalArgumentException("La clave es nula");
         }
         if (isEmpty()) {
             return null;
@@ -56,7 +56,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
 
     public void put(Key key, Value val) {
         if (key == null) {
-            throw new IllegalArgumentException("first argument to put() is null");
+            throw new IllegalArgumentException("La clave es nula");
         }
 
         if (val == null) {
@@ -88,7 +88,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
 
     public void delete(Key key) {
         if (key == null) {
-            throw new IllegalArgumentException("argument to delete() is null");
+            throw new IllegalArgumentException("No se encontró la llave");
         }
         if (isEmpty()) {
             return;
@@ -119,42 +119,42 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
 
     public boolean contains(Key key) {
         if (key == null) {
-            throw new IllegalArgumentException("argument to contains() is null");
+            throw new IllegalArgumentException("El argumento es nulo");
         }
         return get(key) != null;
     }
 
     public Key min() {
         if (isEmpty()) {
-            throw new NoSuchElementException("called min() with empty symbol table");
+            throw new NoSuchElementException("No hay claves en la tabla de símbolos");
         }
         return keys[0];
     }
 
     public Key max() {
         if (isEmpty()) {
-            throw new NoSuchElementException("called max() with empty symbol table");
+            throw new NoSuchElementException("No hay claves en la tabla de símbolos");
         }
         return keys[n - 1];
     }
 
     public Key select(int k) {
         if (k < 0 || k >= size()) {
-            throw new IllegalArgumentException("called select() with invalid argument: " + k);
+            throw new IllegalArgumentException("El valor " + k + " ingresado no se encuentra dentro del rango de valores.");
         }
         return keys[k];
     }
 
     public Key floor(Key key) {
         if (key == null) {
-            throw new IllegalArgumentException("argument to floor() is null");
+            throw new IllegalArgumentException("El piso es nulo");
         }
         int i = rank(key);
         if (i < n && key.compareTo(keys[i]) == 0) {
             return keys[i];
         }
         if (i == 0) {
-            throw new NoSuchElementException("argument to floor() is too small");
+            throw new NoSuchElementException("El valor es demasiado pequeño");
         } else {
             return keys[i - 1];
         }
@@ -162,19 +162,19 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
 
     public Key ceiling(Key key) {
         if (key == null) {
-            throw new IllegalArgumentException("argument to ceiling() is null");
+            throw new IllegalArgumentException("El techo es nulo");
         }
         int i = rank(key);
         if (i == n) {
-            throw new NoSuchElementException("argument to ceiling() is too large");
+            throw new NoSuchElementException("El valor es demasiado grande");
         } else {
             return keys[i];
         }
     }
 
-    public int rank(Key key, int lo, int hi) {
+    private int rank(Key key, int lo, int hi) {
         if (key == null) {
-            throw new IllegalArgumentException("argument to rank() is null");
+            throw new IllegalArgumentException("La clave del rango es nula");
         }
         if (lo > hi) {
             return lo;
@@ -190,26 +190,33 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
         }
     }
 
+    public int rank(Key key) {
+        if (key == null) {
+            throw new IllegalArgumentException("La clave del rango es nula");
+        }
+        return rank(key, 0, n - 1);
+    }
+
     public void deleteMin() {
         if (isEmpty()) {
-            throw new NoSuchElementException("Symbol table underflow error");
+            throw new NoSuchElementException("La tabla de símbolos está vacía");
         }
         delete(min());
     }
 
     public void deleteMax() {
         if (isEmpty()) {
-            throw new NoSuchElementException("Symbol table underflow error");
+            throw new NoSuchElementException("La tabla de símbolos está vacía");
         }
         delete(max());
     }
 
     public int size(Key lo, Key hi) {
         if (lo == null) {
-            throw new IllegalArgumentException("first argument to size() is null");
+            throw new IllegalArgumentException("El primer valor es nulo");
         }
         if (hi == null) {
-            throw new IllegalArgumentException("second argument to size() is null");
+            throw new IllegalArgumentException("El segundo valor es nulo");
         }
 
         if (lo.compareTo(hi) > 0) {
@@ -228,13 +235,13 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
 
     public Iterable<Key> keys(Key lo, Key hi) {
         if (lo == null) {
-            throw new IllegalArgumentException("first argument to keys() is null");
+            throw new IllegalArgumentException("El primer valor de las llaves es nulo");
         }
         if (hi == null) {
-            throw new IllegalArgumentException("second argument to keys() is null");
+            throw new IllegalArgumentException("El segundo valor de las llaves es nulo");
         }
 
-        Queue<Key> queue = new Queue<Key>();
+        Queue<Key> queue = new Queue<>();
         if (lo.compareTo(hi) > 0) {
             return queue;
         }
