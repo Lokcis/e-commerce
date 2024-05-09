@@ -3,12 +3,6 @@ package dataStructures;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 
-/**
- *
- * @author lokci
- * @param <Key>
- * @param <Value>
- */
 public class BinarySearchST<Key extends Comparable<Key>, Value> implements Comparator<Key> {
 
     private Key[] keys;
@@ -48,7 +42,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
             return null;
         }
         int i = rank(key);
-        if (i < n && keys[i].compareTo(key) == 0) {
+        if (i < n && compare(keys[i], key) == 0) {
             return vals[i];
         }
         return null;
@@ -67,7 +61,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
         int i = rank(key);
 
         // key is already in table
-        if (i < n && keys[i].compareTo(key) == 0) {
+        if (i < n && compare(keys[i], key) == 0) {
             vals[i] = val;
             return;
         }
@@ -98,7 +92,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
         int i = rank(key);
 
         // key not in table
-        if (i == n || keys[i].compareTo(key) != 0) {
+        if (i == n || compare(keys[i], key) != 0) {
             return;
         }
 
@@ -150,7 +144,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
             throw new IllegalArgumentException("El piso es nulo");
         }
         int i = rank(key);
-        if (i < n && key.compareTo(keys[i]) == 0) {
+        if (i < n && compare(key, keys[i]) == 0) {
             return keys[i];
         }
         if (i == 0) {
@@ -180,7 +174,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
             return lo;
         }
         int mid = lo + (hi - lo) / 2;
-        int cmp = key.compareTo(keys[mid]);
+        int cmp = compare(key, keys[mid]);
         if (cmp < 0) {
             return rank(key, lo, mid - 1);
         } else if (cmp > 0) {
@@ -219,7 +213,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
             throw new IllegalArgumentException("El segundo valor es nulo");
         }
 
-        if (lo.compareTo(hi) > 0) {
+        if (compare(lo, hi) > 0) {
             return 0;
         }
         if (contains(hi)) {
@@ -242,7 +236,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
         }
 
         Queue<Key> queue = new Queue<>();
-        if (lo.compareTo(hi) > 0) {
+        if (compare(lo, hi) > 0) {
             return queue;
         }
         for (int i = rank(lo); i < rank(hi); i++) {
@@ -256,6 +250,6 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
 
     @Override
     public int compare(Key o1, Key o2) {
-        return 1;
+        return o1.compareTo(o2); // Aquí puedes personalizar cómo comparas las claves
     }
 }
