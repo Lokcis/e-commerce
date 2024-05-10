@@ -56,7 +56,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
             throw new IllegalArgumentException("La clave es nula");
         }
 
-        if (val == null) {
+        if (val == null || (Integer) val <= 0) {
             delete(key);
             return;
         }

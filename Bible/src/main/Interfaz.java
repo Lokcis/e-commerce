@@ -18,8 +18,8 @@ public class Interfaz {
         Scanner in = new Scanner(System.in);
         int opc;
         String key;
-        String rutaEntrada = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\Biblia.txt";
-        String rutaSalida = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\biblia_limpiada.txt;";
+        String rutaEntrada = "C:\\Users\\espin\\Documents\\NetBeansProjects\\Biblia\\Bible\\src\\Files\\Biblia.txt";
+        String rutaSalida = "C:\\Users\\espin\\Documents\\NetBeansProjects\\Biblia\\Bible\\src\\Files\\biblia_limpiada.txt;";
 
         try {
             LimpiarTexto.limpiarArchivo(rutaEntrada, rutaSalida);
@@ -109,11 +109,7 @@ public class Interfaz {
                     System.out.println("\nLa clave tenía " + tabla.get(key) + " repeticiones.\n");
                     if (tabla.get(key) != null) {
                         tabla.put(key, tabla.get(key) - 1);
-                    } else {
-                        tabla.put(key, 1);
                     }
-                    System.out.println("\nSe ha agregado la clave " + key + " sumando " + (tabla.get(key)) + " repeticiones.\n");
-
                 }
                 case 6 -> {
 
