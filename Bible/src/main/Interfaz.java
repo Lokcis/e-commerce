@@ -18,8 +18,8 @@ public class Interfaz {
         Scanner in = new Scanner(System.in);
         int opc;
         String key;
-        String rutaEntrada = "C:\\Users\\espin\\Documents\\NetBeansProjects\\Biblia\\Bible\\src\\Files\\Biblia.txt";
-        String rutaSalida = "C:\\Users\\espin\\Documents\\NetBeansProjects\\Biblia\\Bible\\src\\Files\\biblia_limpiada.txt;";
+        String rutaEntrada = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\Biblia.txt";
+        String rutaSalida = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\biblia_limpiada.txt;";
 
         try {
             LimpiarTexto.limpiarArchivo(rutaEntrada, rutaSalida);
@@ -60,8 +60,9 @@ public class Interfaz {
                                1. Verificar el tamaño de la tabla.
                                2. Traer el valor de la clave.
                                3. Comprobar si está vacío.
-                               4. Agregar una clave.
-                               5. Eliminar una clave.
+                               4. Agregar una repetición.
+                               5. Eliminar una repetición.
+                               6. Elimina una clave.
                                6. Verifica si existe la clave.
                                7. Llamar el valor menor.
                                8. Llamar el valor mayor.
@@ -112,7 +113,12 @@ public class Interfaz {
                     }
                 }
                 case 6 -> {
-
+                    System.out.println("\nDigite la clave que desea eliminar.\n");
+                    key = in.next();
+                    System.out.println("\nLa clave tenía " + tabla.get(key) + " repeticiones.\n");
+                    if (tabla.get(key) != null) {
+                        tabla.delete(key);
+                    }
                 }
                 case 7 -> {
 
@@ -136,6 +142,9 @@ public class Interfaz {
 
                 }
                 case 14 -> {
+
+                }
+                case 15 -> {
 
                 }
 
