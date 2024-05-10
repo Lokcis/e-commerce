@@ -86,6 +86,7 @@ public class BST<Key extends Comparable<Key>, Value> implements Comparator<Key> 
         if (val == null) {
             delete(key);
         }
+        root = put(root, key, val);
     }
 
     private Node put(Node x, Key key, Value val) {
