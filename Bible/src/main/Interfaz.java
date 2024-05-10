@@ -8,18 +8,26 @@ import java.util.Scanner;
 /**
  *
  * @author lokci
+ * 
+ *Clase Interfaz que proporciona una interfaz de usuario para interactuar con una tabla de símbolos basada en un árbol binario de búsqueda.
+ * La tabla de símbolos se llena con palabras de un archivo de texto y sus repeticiones.
+ * Permite realizar diversas operaciones como consultar el tamaño de la tabla, buscar valores asociados a claves,
+ * agregar, eliminar y modificar elementos, entre otras funcionalidades.
+ * Utiliza las clases BinarySearchST y BST para manejar la estructura de datos subyacente.
  */
+
 public class Interfaz {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        // Código principal de la interfaz
         Scanner in = new Scanner(System.in);
         int opc, pos;
         String key;
-        String rutaEntrada = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\Biblia.txt";
-        String rutaSalida = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\biblia_limpiada.txt;";
+        String rutaEntrada = "C:\\Users\\espin\\Documents\\NetBeansProjects\\Biblia\\Bible\\src\\Files\\Biblia.txt";
+        String rutaSalida = "C:\\Users\\espin\\Documents\\NetBeansProjects\\Biblia\\Bible\\src\\Files\\biblia_limpiada.txt;";
 
         try {
             LimpiarTexto.limpiarArchivo(rutaEntrada, rutaSalida);
@@ -33,8 +41,8 @@ public class Interfaz {
         String[] palabras = LimpiarTexto.obtenerPalabras(rutaSalida);
 
         // Crear una nueva instancia de las estructuras de datos
-        BinarySearchST<String, Integer> tabla2 = new BinarySearchST<>(palabras.length);
-        BST<String, Integer> tabla = new BST<>();
+        BinarySearchST<String, Integer> tabla = new BinarySearchST<>(palabras.length);
+        BST<String, Integer> tabla2 = new BST<>();
         
 
         // Llenar la tabla con las palabras y sus conteos
