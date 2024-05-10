@@ -7,8 +7,26 @@ package Files;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Clase que proporciona métodos para limpiar un archivo de texto, contar
+ * palabras y obtener un arreglo de palabras a partir de un archivo. Está
+ * diseñada para eliminar caracteres no deseados, contar palabras y obtener un
+ * arreglo de palabras para su posterior procesamiento.
+ *
+ * @author espin
+ */
 public class LimpiarTexto {
 
+    /**
+     * Limpia un archivo de texto eliminando caracteres no deseados como
+     * símbolos de puntuación y convirtiendo el texto a minúsculas.
+     *
+     * @param rutaEntrada La ruta del archivo de entrada que se desea limpiar.
+     * @param rutaSalida La ruta del archivo de salida donde se guardará el
+     * texto limpio.
+     * @throws IOException Si ocurre un error de entrada/salida al procesar los
+     * archivos.
+     */
     public static void limpiarArchivo(String rutaEntrada, String rutaSalida) throws IOException {
         BufferedReader lector = null;
         BufferedWriter escritor = null;
@@ -32,7 +50,6 @@ public class LimpiarTexto {
             System.out.println("Archivo limpiado con éxito.");
         } catch (IOException e) {
             System.err.println("Error al procesar el archivo: " + e.getMessage());
-            throw e;  // Lanzar la excepción para que pueda ser manejada por el método que llama a este
         } finally {
             // Asegurarse de cerrar los flujos de entrada/salida
             if (lector != null) {
@@ -44,10 +61,16 @@ public class LimpiarTexto {
         }
     }
 
-    public static int contarPalabras(String rutaArchivo) {
+    /**
+     * Cuenta el número total de palabras en un archivo de texto.
+     *   
+     * @param rutaSalida La ruta del archivo del cual se contarán las palabras.
+     * @return El número total de palabras en el archivo.
+     */
+    public static int contarPalabras(String rutaSalida) {
         int contador = 0;
         try {
-            BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo));
+            BufferedReader lector = new BufferedReader(new FileReader(rutaSalida));
             String linea;
             while ((linea = lector.readLine()) != null) {
                 // Dividir la línea en palabras usando espacios en blanco como delimitador
@@ -61,6 +84,14 @@ public class LimpiarTexto {
         return contador;
     }
 
+    /**
+     * Obtiene un arreglo de palabras a partir de un archivo de texto.
+     *
+     * @param rutaArchivo La ruta del archivo del cual se obtendrán las
+     * palabras.
+     * @return Un arreglo de tipo String que contiene todas las palabras del
+     * archivo.
+     */
     public static String[] obtenerPalabras(String rutaArchivo) {
         List<String> listaPalabras = new ArrayList<>();
         try {
