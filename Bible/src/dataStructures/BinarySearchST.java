@@ -15,7 +15,9 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
     }
 
     private void resize(int capacity) {
-        assert capacity >= n;
+        if (capacity < n) {
+            throw new IllegalArgumentException("La capacidad no puede ser menor que el número de elementos existentes");
+        }
         Key[] tempk = (Key[]) new Comparable[capacity];
         Value[] tempv = (Value[]) new Object[capacity];
         for (int i = 0; i < n; i++) {
@@ -26,6 +28,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
         keys = tempk;
     }
 
+    
     public int size() {
         return n;
     }
@@ -80,12 +83,17 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
         n++;
     }
 
-    public void delete(Key key) {
+    /**
+     *
+     * @param key
+     * @return
+     */
+    public Key delete(Key key) {
         if (key == null) {
             throw new IllegalArgumentException("No se encontró la llave");
         }
         if (isEmpty()) {
-            return;
+            throw new IllegalArgumentException("El arreglo está vacío");
         }
 
         // compute rank
@@ -93,7 +101,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
 
         // key not in table
         if (i == n || compare(keys[i], key) != 0) {
-            return;
+            return key;
         }
 
         for (int j = i; j < n - 1; j++) {
@@ -109,6 +117,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
         if (n > 0 && n == keys.length / 4) {
             resize(keys.length / 2);
         }
+        return null;
     }
 
     public boolean contains(Key key) {
@@ -250,6 +259,6 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
 
     @Override
     public int compare(Key o1, Key o2) {
-        return o1.compareTo(o2); // Aquí puedes personalizar cómo comparas las claves
+        return o1.compareTo(o2);
     }
 }
