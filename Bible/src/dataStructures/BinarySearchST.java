@@ -193,7 +193,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements Compa
         }
     }
 
-    private int rank(Key key) {
+    public int rank(Key key) {
         if (key == null) {
             throw new IllegalArgumentException("La clave del rango es nula");
         }

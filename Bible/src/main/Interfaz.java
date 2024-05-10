@@ -18,8 +18,8 @@ public class Interfaz {
         Scanner in = new Scanner(System.in);
         int opc, pos;
         String key;
-        String rutaEntrada = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\Biblia.txt";
-        String rutaSalida = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\biblia_limpiada.txt;";
+        String rutaEntrada = "C:\\Users\\espin\\Documents\\NetBeansProjects\\Biblia\\Bible\\src\\Files\\Biblia.txt";
+        String rutaSalida = "C:\\Users\\espin\\Documents\\NetBeansProjects\\Biblia\\Bible\\src\\Files\\biblia_limpiada.txt;";
 
         try {
             LimpiarTexto.limpiarArchivo(rutaEntrada, rutaSalida);
@@ -150,8 +150,17 @@ public class Interfaz {
                     tabla.deleteMax();
                 }
                 case 14 -> {
-                    System.out.println("Ingre"
-                            + "");
+                    System.out.println("\nIngrese la primera posición del rango");
+                    int lo = in.nextInt();
+                    System.out.println("\nIngrese la segunda posición del rango");
+                    int hi = in.nextInt();
+                    System.out.println("\nLas claves en el rango [" + lo + ", " + hi + "] son:");
+                    int rankLo = tabla.rank(tabla.select(lo));
+                    int rankHi = tabla.rank(tabla.select(hi));
+                    for (int i = rankLo; i <= rankHi; i++) {
+                        String palabra = tabla.select(i);
+                        System.out.println("Palabra: " + palabra + ", Repeticiones: " + tabla.get(palabra));
+                    }
                 }
 
                 default -> {
