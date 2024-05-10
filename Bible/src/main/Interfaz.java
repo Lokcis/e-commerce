@@ -20,14 +20,14 @@ public class Interfaz {
         String key;
         String rutaEntrada = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\Biblia.txt";
         String rutaSalida = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\biblia_limpiada.txt;";
-        
+
         try {
             LimpiarTexto.limpiarArchivo(rutaEntrada, rutaSalida);
         } catch (IOException e) {
             System.err.println("Error al limpiar el archivo: " + e.getMessage());
-            return;  
+            return;
         }
-        int cantidadPalabras = LimpiarTexto.contarPalabras(rutaSalida);        
+        int cantidadPalabras = LimpiarTexto.contarPalabras(rutaSalida);
         System.out.println("La Biblia limpiada contiene " + cantidadPalabras + " palabras.");
 
         String[] palabras = LimpiarTexto.obtenerPalabras(rutaSalida);
@@ -83,22 +83,24 @@ public class Interfaz {
                 case 2 -> {
                     System.out.println("\nIngrese la clave a buscar\n");
                     key = in.next();
-                    
+
                     System.out.println("\nLa palabra " + key + " se repite " + tabla.get(key) + " veces.\n");
                 }
                 case 3 -> {
                     if (tabla.isEmpty()) {
                         System.out.println("\nLa tabla de símbolos está vacía.\n");
-                    } else{
+                    } else {
                         System.out.println("\nLa tabla de símbolos no está vacía.\n");
                     }
                 }
                 case 4 -> {
                     System.out.println("\nDigite la clave que desea agregar\n");
                     key = in.next();
-                    System.out.println("\nLa clave tenía " + tabla.get(key) + "repeticiones.\n");
-                    tabla.put(key, tabla.get(key) + 1);
-                    System.out.println("\nSe ha agregado la clave " + key + " sumando " + (tabla.get(key)) + "repeticiones\n");
+                    System.out.println("\nLa clave tenía " + tabla.get(key) + " repeticiones.\n");
+                    if (tabla.get(key) != null) {
+                        tabla.put(key, tabla.get(key) + 1);
+                    } else { tabla.put(key, 1);}
+                    System.out.println("\nSe ha agregado la clave " + key + " sumando " + (tabla.get(key)) + " repeticiones\n");
                 }
                 case 5 -> {
 
