@@ -1,7 +1,7 @@
 package main;
 
 import Files.LimpiarTexto;
-import dataStructures.BinarySearchST;
+import dataStructures.*;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -18,8 +18,8 @@ public class Interfaz {
         Scanner in = new Scanner(System.in);
         int opc, pos;
         String key;
-        String rutaEntrada = "C:\\Users\\espin\\Documents\\NetBeansProjects\\Biblia\\Bible\\src\\Files\\Biblia.txt";
-        String rutaSalida = "C:\\Users\\espin\\Documents\\NetBeansProjects\\Biblia\\Bible\\src\\Files\\biblia_limpiada.txt;";
+        String rutaEntrada = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\Biblia.txt";
+        String rutaSalida = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\biblia_limpiada.txt;";
 
         try {
             LimpiarTexto.limpiarArchivo(rutaEntrada, rutaSalida);
@@ -32,8 +32,10 @@ public class Interfaz {
 
         String[] palabras = LimpiarTexto.obtenerPalabras(rutaSalida);
 
-        // Crear una nueva instancia de BinarySearchST
-        BinarySearchST<String, Integer> tabla = new BinarySearchST<>(palabras.length);
+        // Crear una nueva instancia de las estructuras de datos
+        BinarySearchST<String, Integer> tabla2 = new BinarySearchST<>(palabras.length);
+        BST<String, Integer> tabla = new BST<>();
+        
 
         // Llenar la tabla con las palabras y sus conteos
         for (String palabra : palabras) {
