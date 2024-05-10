@@ -16,7 +16,7 @@ public class Interfaz {
      */
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int opc;
+        int opc, pos;
         String key;
         String rutaEntrada = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\Biblia.txt";
         String rutaSalida = "C:\\Users\\lokci\\OneDrive\\Documentos\\Piloto\\Cuarto Semestre\\Estructuras\\Biblia\\Bible\\src\\Files\\biblia_limpiada.txt;";
@@ -52,18 +52,17 @@ public class Interfaz {
             System.out.println("Palabra: " + palabra + ", Repeticiones: " + tabla.get(palabra));
         }
 
-        System.out.println("¡Bienvenido!");
+        System.out.println("\n¡Bienvenido!");
         do {
 
             System.out.println("""
-                               Selecciones la acción a realizar: 
+                               \nSelecciones la acción a realizar: 
                                1. Verificar el tamaño de la tabla.
                                2. Traer el valor de la clave.
                                3. Comprobar si está vacío.
                                4. Agregar una repetición.
                                5. Eliminar una repetición.
                                6. Elimina una clave.
-                               6. Verifica si existe la clave.
                                7. Llamar el valor menor.
                                8. Llamar el valor mayor.
                                9. Llamar el valor en la posición indicada.
@@ -78,78 +77,85 @@ public class Interfaz {
 
             switch (opc) {
                 case 1 -> {
-                    System.out.println("\nEl tamaño de la tabla es de: " + tabla.size() + "\n");
+                    System.out.println("\nEl tamaño de la tabla es de: " + tabla.size());
                 }
                 case 2 -> {
                     System.out.println("\nIngrese la clave a buscar\n");
                     key = in.next();
 
-                    System.out.println("\nLa palabra " + key + " se repite " + tabla.get(key) + " veces.\n");
+                    System.out.println("\nLa palabra " + key + " se repite " + tabla.get(key) + " veces.");
                 }
                 case 3 -> {
                     if (tabla.isEmpty()) {
-                        System.out.println("\nLa tabla de símbolos está vacía.\n");
+                        System.out.println("\nLa tabla de símbolos está vacía.");
                     } else {
-                        System.out.println("\nLa tabla de símbolos no está vacía.\n");
+                        System.out.println("\nLa tabla de símbolos no está vacía.");
                     }
                 }
                 case 4 -> {
-                    System.out.println("\nDigite la clave que desea agregar.\n");
+                    System.out.println("\nDigite la clave que desea agregar.");
                     key = in.next();
-                    System.out.println("\nLa clave tenía " + tabla.get(key) + " repeticiones.\n");
+                    System.out.println("\nLa clave tenía " + tabla.get(key) + " repeticiones.");
                     if (tabla.get(key) != null) {
                         tabla.put(key, tabla.get(key) + 1);
                     } else {
                         tabla.put(key, 1);
                     }
-                    System.out.println("\nSe ha agregado la clave " + key + " sumando " + (tabla.get(key)) + " repeticiones.\n");
+                    System.out.println("\nSe ha agregado la clave " + key + " sumando " + (tabla.get(key)) + " repeticiones.");
                 }
                 case 5 -> {
-                    System.out.println("\nDigite la clave que desea eliminar.\n");
+                    System.out.println("\nDigite la clave que desea eliminar.");
                     key = in.next();
-                    System.out.println("\nLa clave tenía " + tabla.get(key) + " repeticiones.\n");
+                    System.out.println("\nLa clave tenía " + tabla.get(key) + " repeticiones.");
                     if (tabla.get(key) != null) {
                         tabla.put(key, tabla.get(key) - 1);
                     }
                 }
                 case 6 -> {
-                    System.out.println("\nDigite la clave que desea eliminar.\n");
+                    System.out.println("\nDigite la clave que desea eliminar.");
                     key = in.next();
-                    System.out.println("\nLa clave tenía " + tabla.get(key) + " repeticiones.\n");
+                    System.out.println("\nLa clave tenía " + tabla.get(key) + " repeticiones.");
                     if (tabla.get(key) != null) {
                         tabla.delete(key);
+                        System.out.println("Se ha eliminado la key " + key);
                     }
                 }
                 case 7 -> {
-
+                    System.out.println("\nEl valor menor de la tabla es " + tabla.min());
                 }
                 case 8 -> {
-
+                    System.out.println("\nEl valor mayor de la tabla es " + tabla.max());
                 }
                 case 9 -> {
-
+                    System.out.println("\nIndique la posición que desea saber el valor: ");
+                    pos = in.nextInt();
+                    System.out.println("\nEl valor de la posición " + pos + " es " + tabla.select(pos));
                 }
                 case 10 -> {
-
+                    System.out.println("\nIndique la clave que desea saber el piso: ");
+                    key = in.next();
+                    System.out.println("\nEl piso de la llave " + key + " es " + tabla.floor(key));
                 }
                 case 11 -> {
-
+                    System.out.println("\nIndique la clave que desea saber el piso: ");
+                    key = in.next();
+                    System.out.println("\nEl piso de la llave " + key + " es " + tabla.ceiling(key));
                 }
                 case 12 -> {
-
+                    System.out.println("Se ha borrado la primera posición " + tabla.min());
+                    tabla.deleteMin();
                 }
                 case 13 -> {
-
+                    System.out.println("Se ha borrado la última posición " + tabla.max());
+                    tabla.deleteMax();
                 }
                 case 14 -> {
-
-                }
-                case 15 -> {
-
+                    System.out.println("Ingre"
+                            + "");
                 }
 
                 default -> {
-
+                    System.out.println("Ingresa un número válido por favor");
                 }
             }
 
