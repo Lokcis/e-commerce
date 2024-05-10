@@ -60,18 +60,17 @@ public class Interfaz {
                                1. Verificar el tamaño de la tabla.
                                2. Traer el valor de la clave.
                                3. Comprobar si está vacío.
-                               4. Agregar una clave nueva.
-                               5. Modificar una clave.
-                               6. Eliminar una clave.
-                               7. Verifica si existe la clave.
-                               8. Llamar el valor menor.
-                               9. Llamar el valor mayor.
-                               10. Llamar el valor en la posición indicada.
-                               11. Valor más alto antes del incidado.
-                               12. Valor más bajo después del incidado.
-                               13. Eliminar el valor mínimo.
-                               14. Eliminar el valor máximo.
-                               15. Retorna los valores entre dos llaves.
+                               4. Agregar una clave.
+                               5. Eliminar una clave.
+                               6. Verifica si existe la clave.
+                               7. Llamar el valor menor.
+                               8. Llamar el valor mayor.
+                               9. Llamar el valor en la posición indicada.
+                               10. Valor más alto antes del incidado.
+                               11. Valor más bajo después del incidado.
+                               12. Eliminar el valor mínimo.
+                               13. Eliminar el valor máximo.
+                               14. Retorna los valores entre dos llaves.
                                
                                """);
             opc = in.nextInt();
@@ -94,15 +93,26 @@ public class Interfaz {
                     }
                 }
                 case 4 -> {
-                    System.out.println("\nDigite la clave que desea agregar\n");
+                    System.out.println("\nDigite la clave que desea agregar.\n");
                     key = in.next();
                     System.out.println("\nLa clave tenía " + tabla.get(key) + " repeticiones.\n");
                     if (tabla.get(key) != null) {
                         tabla.put(key, tabla.get(key) + 1);
-                    } else { tabla.put(key, 1);}
-                    System.out.println("\nSe ha agregado la clave " + key + " sumando " + (tabla.get(key)) + " repeticiones\n");
+                    } else {
+                        tabla.put(key, 1);
+                    }
+                    System.out.println("\nSe ha agregado la clave " + key + " sumando " + (tabla.get(key)) + " repeticiones.\n");
                 }
                 case 5 -> {
+                    System.out.println("\nDigite la clave que desea eliminar.\n");
+                    key = in.next();
+                    System.out.println("\nLa clave tenía " + tabla.get(key) + " repeticiones.\n");
+                    if (tabla.get(key) != null) {
+                        tabla.put(key, tabla.get(key) - 1);
+                    } else {
+                        tabla.put(key, 1);
+                    }
+                    System.out.println("\nSe ha agregado la clave " + key + " sumando " + (tabla.get(key)) + " repeticiones.\n");
 
                 }
                 case 6 -> {
@@ -130,9 +140,6 @@ public class Interfaz {
 
                 }
                 case 14 -> {
-
-                }
-                case 15 -> {
 
                 }
 
