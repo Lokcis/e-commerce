@@ -66,4 +66,29 @@ public class Cliente extends Usuario implements Observador {
     public void actualizar() {
         System.out.println("El cliente " + getNombre() + " ha sido notificado de un cambio en un item");
     }
+
+    public void agregarProductoAlCarrito(Item item) {
+        this.colaDeItems.add(item);
+    }
+
+    public void verCarrito() {
+        System.out.println("Productos en el carrito de " + getNombre() + ":");
+        for (Item item : colaDeItems) {
+            System.out.println(item.getNombre() + " - Precio: " + item.getPrecio());
+        }
+    }
+
+    public void realizarCompra() {
+        System.out.println("Realizando compra para " + getNombre());
+        while (!colaDeItems.isEmpty()) {
+            Item item = colaDeItems.poll();
+            if (item != null && item.getPrecio() <= this.saldo) {
+                this.historialDeCompras.add(item);
+                this.saldo -= item.getPrecio();
+                System.out.println("Compra realizada: " + item.getNombre());
+            } else {
+                System.out.println("No se puede comprar el producto: " + item.getNombre());
+            }
+        }
+    }
 }

@@ -56,4 +56,12 @@ public class Proveedor extends Usuario implements Observador {
     public void actualizar() {
         System.out.println("El proveedor " + getNombre() + " ha sido notificado de un cambio en un item");
     }
+
+    public void mostrarProductos() {
+        System.out.println("Productos disponibles de " + getEmpresa() + ":");
+        for (Item item : productos) {
+            System.out.println(item.getNombre() + " - Precio: " + item.getPrecio());
+        }
+    }
+
 }
